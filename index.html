@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Roboto", sans-serif;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #f9f9f9;
+    }
+
+    .wrapper {
+        position: relative;
+        width: 400px;
+        height: 500px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        overflow: hidden;
+        z-index: 1;
+        background: #444;
+    }
+
+    .form-wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    h2 {
+        font-size: 30px;
+        color: #fff;
+        text-align: center;
+    }
+
+    .input-box {
+        width: 320px;
+        position: relative;
+        margin: 30px 0px;
+        border-bottom: 2px solid white;
+    }
+
+    .input-box label {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        font-size: 18px;
+        font-weight: bolder;
+        color: #fff;
+        pointer-events: none;
+        transition: .5s;
+    }
+
+    .input-box input {
+        width: 100%;
+        height: 40px;
+        background: transparent;
+        outline: none;
+        border: none;
+        font-size: 16px;
+        font-weight: 600;
+        color: #fff;
+        padding: 0px 5px;
+    }
+
+    .input-box input:focus~label,
+    .input-box input:valid~label {
+        top: -5px;
+    }
+
+    .forgot-pass {
+        margin: 15px 0px;
+    }
+
+    .forgot-pass a {
+        color: white;
+        font-size: 16px;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .forgot-pass a:hover {
+        text-decoration: underline;
+
+    }
+
+    button {
+        width: 100%;
+        height: 40px;
+        font-size: 16px;
+        font-weight: 600;
+        background-color: #fff;
+        border: none;
+        outline: none;
+        border-radius: 30px;
+        cursor: pointer;
+    }
+
+    .sign-link {
+        text-align: center;
+        font-weight: 600;
+        font-size: 16px;
+        margin: 15px 0px;
+    }
+
+    .sign-link p {
+        color: white;
+    }
+
+    .sign-link p a {
+        font-weight: 500;
+        text-decoration: none;
+        font-size: 18px;
+        color: white;
+        margin: 0px 4px;
+    }
+
+    .sign-link p a:hover {
+        text-decoration: underline;
+    }
+
+    .social-platform {
+        text-align: center;
+        color: white;
+        font-size: 16px;
+    }
+
+    .social-icons a {
+        display: inline-block;
+        width: 35px;
+        height: 35px;
+        border: 1px solid white;
+        background: transparent;
+        border-radius: 50%;
+        margin: 16px 5px 0px;
+        text-align: center;
+        transition: .5s;
+    }
+
+    .social-icons a:hover {
+        background-color: #fff;
+    }
+
+    .social-icons a i {
+        font-size: 14px;
+        color: white;
+        line-height: 35px;
+        transition: .5s;
+    }
+
+    .social-icons a i:hover {
+        color: #444;
+    }
+
+    .curved {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: #976de7;
+        clip-path: circle(98% at 0 0);
+        z-index: -2;
+        transition-delay: 1s;
+    }
+.bg-animated{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #976de7;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    clip-path: circle(0% at 0 0);
+}
+.bg-animated.activebg{
+    transition: clip-path 1s ease-in-out;
+    clip-path:circle(98% at 0 0);
+}
+    .colors {
+        position: absolute;
+        right: 0;
+        background-color: #444;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .colors .color {
+        position: relative;
+        width: 25px;
+        height: 25px;
+        background: var(--clr);
+        margin: 10px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .color.activeclr {
+        border: 1px solid white;
+        transform: scale(1.2);
+    }
+
+    .wrapper.activeSignUp {
+        animation: wrappershowjellyanimate 1s ease forwards;
+        animation-delay: 1s;
+    }
+
+    .wrapper.activeSignIn {
+        animation: wrappershowsigninjellyanimate 1s ease forwards;
+        animation-delay: 1s;
+    }
+
+    .wrapper.activeSignUp .form-wrapper.sign-in {
+        animation: hidejellyanimate 1s ease forwards;
+        /* animation-delay: 1s; */
+    }
+    .wrapper.activeSignIn .form-wrapper.sign-in {
+        animation: showjellyanimate 1s ease forwards;
+        animation-delay: 1s;
+        transform: scale(0,0);
+
+    }
+
+    .wrapper.activeSignUp .form-wrapper.sign-up {
+        animation: showjellyanimate 1s ease forwards;
+        animation-delay: 1s;
+    }
+    .wrapper.activeSignIn .form-wrapper.sign-up {
+        animation: hidejellyanimate 1s ease forwards;
+        
+    }
+    @keyframes wrappershowsigninjellyanimate {
+        0% {
+            transform: scale(1, 1);
+        }
+
+        25% {
+            transform: scale(.95, 1.05);
+        }
+
+        50% {
+            transform: scale(1.1, .9);
+        }
+
+        75% {
+            transform: scale(.9, 1.1);
+        }
+
+        100% {
+            transform: scale(1, 1);
+        }
+    }
+
+    @keyframes wrappershowjellyanimate {
+        0% {
+            transform: scale(1, 1);
+        }
+
+        25% {
+            transform: scale(.95, 1.05);
+        }
+
+        50% {
+            transform: scale(1.1, .9);
+        }
+
+        75% {
+            transform: scale(.9, 1.1);
+        }
+
+        100% {
+            transform: scale(1, 1);
+        }
+    }
+
+    @keyframes showjellyanimate {
+        0% {
+            transform: scale(0, 0);
+        }
+
+        25% {
+            transform: scale(.95, 1.05);
+        }
+
+        50% {
+            transform: scale(1.1, .9);
+        }
+
+        75% {
+            transform: scale(.9, 1.1);
+        }
+
+        100% {
+            transform: scale(1, 1);
+        }
+    }
+
+
+
+
+    @keyframes hidejellyanimate {
+        0% {
+            transform: scale(1, 1);
+        }
+
+        25% {
+            transform: scale(.9, 1.1);
+        }
+
+        50% {
+            transform: scale(1.1, .9);
+        }
+
+        75% {
+            transform: scale(.95, 1.05);
+        }
+
+        100% {
+            transform: scale(0, 0);
+        }
+    }
+
+    .form-wrapper.sign-up {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: scale(0, 0);
+    }
+</style>
+
+<body>
+    <div class="wrapper">
+        <div class="bg-animated" id="bg-animated"></div>
+        <div class="curved" id="curved"></div>
+        <div class="form-wrapper sign-in">
+            <form action="#">
+                <h2>Sing In</h2>
+                <div class="input-box">
+                    <input type="text">
+                    <label>Username</label>
+                </div>
+
+                <div class="input-box">
+                    <input type="text">
+                    <label>Password</label>
+                </div>
+                <div class="forgot-pass">
+                    <a href="#">Forgot Password</a>
+                </div>
+                <button type="submit">Sign In</button>
+                <div class="sign-link">
+                    <p>Don,t have account ?<a href="#" onclick="activeSignUp()">Sign Up</a></p>
+                </div>
+                <div class="social-platform">
+                    <p>Or sign with</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-google"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- sign up -->
+        <div class="form-wrapper sign-up">
+            <form action="#">
+                <h2>Sing Up</h2>
+                <div class="input-box">
+                    <input type="text" required>
+                    <label>Username</label>
+                </div>
+
+                <div class="input-box">
+                    <input type="email" required>
+                    <label>Email</label>
+                </div>
+
+                <div class="input-box">
+                    <input type="text" required>
+                    <label>Password</label>
+                </div>
+                <!-- <div class="forgot-pass">
+                    <a href="#">Forgot Password</a>
+                </div> -->
+                <button type="submit">Sign Up</button>
+                <div class="sign-link">
+                    <p>Already have account ?<a href="#" onclick="activeSignIn ()">Sign In</a></p>
+                </div>
+                <!-- <div class="social-platform">
+                    <p>Or sign with</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-google"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+
+                    </div>
+                </div> -->
+            </form>
+        </div>
+
+    </div>
+    <div class="colors">
+        <span class="color" style="--clr:#77dd77;" onclick="changeBgColor('#77dd77')"></span>
+        <span class="color" style="--clr:#f67599;" onclick="changeBgColor('#f67599')"></span>
+        <span class="color activeclr" style="--clr:#976de7;" onclick="changeBgColor('#976de7')"></span>
+        <span class="color" style="--clr:#1db9c3;" onclick="changeBgColor('#1db9c3')"></span>
+        <span class="color" style="--clr:#ffb347;" onclick="changeBgColor('#ffb347')"></span>
+    </div>
+    <script>
+        // for(let i = 1;i<=10;i++){
+        //     function print(){
+        //         setTimeout(() => {
+        //             document.write(i+"<br>");
+        //         },2000 * i)
+        //     }
+        //     print();
+        // }
+
+        const wrapper = document.querySelector(".wrapper");
+        function activeSignUp() {
+            wrapper.classList.add("activeSignUp");
+            wrapper.classList.remove("activeSignIn");
+        }
+        function activeSignIn() {
+            wrapper.classList.add("activeSignIn");
+            wrapper.classList.remove("activeSignUp");
+        } 
+
+
+        function changeBgColor(color){
+            const bgAnimated= document.getElementById("bg-animated");
+            const curved= document.getElementById("curved");
+            bgAnimated.style.backgroundColor = color;
+            curved.style.backgroundColor = color;
+            bgAnimated.classList.add("activebg");
+
+            setTimeout(function(){
+                bgAnimated.classList.remove("activebg");
+            },1200)
+        }
+
+
+        const colors = document.querySelectorAll(".color");
+        function activeLink(){
+            colors.forEach((item) => {
+item.classList.remove("activeclr");
+this.classList.add("activeclr");
+            })
+        }
+        colors.forEach((item) => {
+            item.addEventListener("click",activeLink)
+        })
+    </script>
+</body>
+
+
+</html>
